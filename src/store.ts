@@ -1,7 +1,7 @@
 import { combineReducers, createStore, applyMiddleware, compose } from 'redux';
 import { combineEpics, createEpicMiddleware } from 'redux-observable';
 import { routerReducer, routerMiddleware } from 'react-router-redux';
-import createHistory from 'history/createBrowserHistory';
+import { createBrowserHistory as createHistory } from 'history';
 
 //Reducers
 import heap, { fetchNode, transferProfile, applyFilters, decodeNodes, applyInitialFilters, addProgressUpdateMessages } from './services/heap/state';
@@ -31,7 +31,7 @@ const rootEpic = combineEpics(
     renderIfCached
 )
 
- const composeEnhancers: Function = (<any>window).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const composeEnhancers: Function = (<any>window).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 export const store = createStore(
     rootReducer,
     //, preloadedState

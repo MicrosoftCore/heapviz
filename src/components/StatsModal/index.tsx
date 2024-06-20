@@ -54,13 +54,13 @@ function columns() {
             id: 'nodeRetainedSize',
             Header: 'Node Retained Size',
             accessor: 'node.retainedSize',
-            Cell: (props:any) => filesize(props.value)
+            Cell: (props: any) => <div>{filesize(props.value)}</div>
         },
         {
             id: 'nodeSelfSize',
             Header: 'Node Self Size',
             accessor: 'node.selfSize',
-            Cell: (props:any) => filesize(props.value)
+            Cell: (props: any) => <div>{filesize(props.value)}</div>
         }
 
     ]

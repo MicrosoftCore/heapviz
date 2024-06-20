@@ -230,7 +230,7 @@ WebInspector.JSHeapSnapshot = class extends WebInspector.HeapSnapshot {
    * @return {?{map: !Uint32Array, flag: number}}
    */
   userObjectsMapAndFlag() {
-    return {map: this._flags, flag: this._nodeFlags.pageObject};
+    return { map: this._flags, flag: this._nodeFlags.pageObject };
   }
 
   /**
@@ -332,7 +332,7 @@ WebInspector.JSHeapSnapshot = class extends WebInspector.HeapSnapshot {
 
     // Populate the entry points. They are Window objects and DOM Tree Roots.
     for (var edgeIndex = firstEdgeIndexes[rootNodeOrdinal], endEdgeIndex = firstEdgeIndexes[rootNodeOrdinal + 1];
-         edgeIndex < endEdgeIndex; edgeIndex += edgeFieldsCount) {
+      edgeIndex < endEdgeIndex; edgeIndex += edgeFieldsCount) {
       var edgeType = containmentEdges[edgeIndex + edgeTypeOffset];
       var nodeIndex = containmentEdges[edgeIndex + edgeToNodeOffset];
       if (edgeType === edgeElementType) {
@@ -486,6 +486,10 @@ WebInspector.JSHeapSnapshotNode = class extends WebInspector.HeapSnapshotNode {
   name() {
     var snapshot = this._snapshot;
     if (this.rawType() === snapshot._nodeConsStringType) {
+      if (!snapshot._lazyStringCache) {
+        snapshot._lazyStringCache = {}
+      }
+
       var string = snapshot._lazyStringCache[this.nodeIndex];
       if (typeof string === 'undefined') {
         string = this._consStringName();
@@ -530,7 +534,7 @@ WebInspector.JSHeapSnapshotNode = class extends WebInspector.HeapSnapshotNode {
       var firstNodeIndex = 0;
       var secondNodeIndex = 0;
       for (var edgeIndex = beginEdgeIndex; edgeIndex < endEdgeIndex && (!firstNodeIndex || !secondNodeIndex);
-           edgeIndex += edgeFieldsCount) {
+        edgeIndex += edgeFieldsCount) {
         var edgeType = edges[edgeIndex + edgeTypeOffset];
         if (edgeType === edgeInternalType) {
           var edgeName = strings[edges[edgeIndex + edgeNameOffset]];

@@ -2,12 +2,13 @@
     "compilerOptions": {
         "outDir": "./dist/",
         "sourceMap": true,
-        "noImplicitAny": true,
+        "noImplicitAny": false,
         "module": "commonjs",
         "target": "es2017",
         "jsx": "react",
         "allowJs": true,
-        "lib":[
+        "skipLibCheck": true,
+        "lib": [
             "dom",
             "webworker",
             "es2017"

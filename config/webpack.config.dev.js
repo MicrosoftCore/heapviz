@@ -1,4 +1,4 @@
-'use strict';
+
 
 var autoprefixer = require('autoprefixer');
 var webpack = require('webpack');
@@ -180,7 +180,7 @@ module.exports = {
   },
 
   // We use PostCSS for autoprefixing only.
-  postcss: function() {
+  postcss: function () {
     return [
       require('postcss-cssnext')
     ];
